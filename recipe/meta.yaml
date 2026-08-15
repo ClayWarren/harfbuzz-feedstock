@@ -1,4 +1,4 @@
-{% set version = "14.3.0" %}
+{% set version = "14.3.1" %}
 
 {% set libs = [
     "harfbuzz", "harfbuzz-cairo", "harfbuzz-gobject", "harfbuzz-gpu",
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://github.com/harfbuzz/harfbuzz/archive/{{ version }}.tar.gz
-  sha256: 566e996a1b40486954fb7110ffe6eb88a0f7958bb466cdb023b0302618acea4a
+  sha256: 05e602daf0846d7497d842807766ea32ca270f3e2c9284ce03811a2a1ed669c9
   patches:
     - patches/0001-Revert-meson-fix-generating-introspection.patch  # [win]
 
