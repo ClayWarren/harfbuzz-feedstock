@@ -16,7 +16,7 @@ source:
     - patches/0001-Revert-meson-fix-generating-introspection.patch  # [win]
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -139,7 +139,16 @@ outputs:
       requires:
         - pkg-config
         - pygobject
+        - {{ compiler("c") }}  # [win]
+      files:
+        - run_test.py  # [win]
+        - test-consumer.c  # [win]
+        - test-consumer.bat  # [win]
+      source_files:
+        - test/api/fonts/Inconsolata-Regular.abc.ttf  # [win]
       commands:
+        - python run_test.py  # [win]
+        - call test-consumer.bat  # [win]
         # Headers
         - test -f $PREFIX/include/harfbuzz/hb-ft.h              # [unix]
         - if not exist %LIBRARY_INC%\harfbuzz\hb-ft.h exit 1    # [win]
