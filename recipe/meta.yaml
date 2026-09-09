@@ -1,10 +1,5 @@
 {% set version = "14.4.0" %}
 
-{% set libs = [
-    "harfbuzz", "harfbuzz-cairo", "harfbuzz-gobject", "harfbuzz-gpu",
-    "harfbuzz-icu", "harfbuzz-raster", "harfbuzz-subset", "harfbuzz-vector"]
-%}
-
 package:
   name: harfbuzz-split
   version: {{ version }}
@@ -89,11 +84,23 @@ outputs:
         - zlib
     test:
       commands:
-        # shared ibraries
-        {% for lib in libs %}
-        - test -f $PREFIX/lib/lib{{ lib }}${SHLIB_EXT}      # [unix]
-        - if not exist %LIBRARY_BIN%\{{ lib }}.dll exit 1   # [win]
-        {% endfor %}
+        # Shared libraries
+        - test -f $PREFIX/lib/libharfbuzz${SHLIB_EXT}  # [unix]
+        - if not exist %LIBRARY_BIN%\harfbuzz.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libharfbuzz-cairo${SHLIB_EXT}  # [unix]
+        - if not exist %LIBRARY_BIN%\harfbuzz-cairo.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libharfbuzz-gobject${SHLIB_EXT}  # [unix]
+        - if not exist %LIBRARY_BIN%\harfbuzz-gobject.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libharfbuzz-gpu${SHLIB_EXT}  # [unix]
+        - if not exist %LIBRARY_BIN%\harfbuzz-gpu.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libharfbuzz-icu${SHLIB_EXT}  # [unix]
+        - if not exist %LIBRARY_BIN%\harfbuzz-icu.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libharfbuzz-raster${SHLIB_EXT}  # [unix]
+        - if not exist %LIBRARY_BIN%\harfbuzz-raster.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libharfbuzz-subset${SHLIB_EXT}  # [unix]
+        - if not exist %LIBRARY_BIN%\harfbuzz-subset.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libharfbuzz-vector${SHLIB_EXT}  # [unix]
+        - if not exist %LIBRARY_BIN%\harfbuzz-vector.dll exit 1  # [win]
 
   - name: libharfbuzz-devel
     script: install_pkg.sh  # [unix]
