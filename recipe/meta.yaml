@@ -146,6 +146,7 @@ outputs:
         - test-consumer.bat  # [win]
       source_files:
         - test/api/fonts/Inconsolata-Regular.abc.ttf  # [win]
+        - test/COPYING  # [win]
       commands:
         - python run_test.py  # [win]
         - call test-consumer.bat  # [win]
